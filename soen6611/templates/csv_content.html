@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSV Content</title>
+</head>
+<body>
+    <h2>CSV Content</h2>
+    <table border="1">
+        {% for row in data %}
+            <tr>
+                {% for column in row %}
+                    <td>{{ column }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

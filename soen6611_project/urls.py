@@ -22,5 +22,9 @@ from soen6611 import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('display/', views.display_csv, name='display_csv'),
+    path('upload/', views.upload_file, name='upload_file'),
+    path('show_csv_content/', views.show_csv_content, name='show_csv_content'),
 ]
+
+
 
