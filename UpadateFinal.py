@@ -142,24 +142,9 @@ class DataStatisticsGUI:
         self.root.title("Statistics Calculator")
         self.data = None
 
-
-        # # Labels for n and r
-        # self.n_label = Label(root, text="Please enter the total number you want to generate:")
-        # self.n_label.grid(row=0, column=0, padx=5)
-        # self.r_label = Label(root, text="Please enter the maximum range of the number you want to generate:")
-        # self.r_label.grid(row=1, column=0, padx=5)
-
-        # # Entry widgets for n and r
-        # self.n_entry = Entry(root)
-        # self.n_entry.insert(0, "1000")
-        # self.n_entry.grid(row=0, column=1, padx=5)
-        # self.r_entry = Entry(root)
-        # self.r_entry.insert(0, "1000")
-        # self.r_entry.grid(row=1, column=1, padx=5)
-
-
-        self.generate_button = tk.Button(root, text="Generate Data", command=self.generate_data)
-        self.generate_button.grid(row=0, column=0, columnspan=8, pady=(0, 10))
+        # Add project name label
+        project_name_label = tk.Label(root, text="MATERISTIXZ", font=("Helvetica", 16, "bold"), pady=10)
+        project_name_label.grid(row=0, column=0, columnspan=8)
 
         # Labels for n and r
         self.n_label = Label(root, text="Please enter the total number you want to generate:")
@@ -175,43 +160,47 @@ class DataStatisticsGUI:
         self.r_entry.insert(0, "1000")
         self.r_entry.grid(row=2, column=4, padx=5, columnspan=8, pady=(0, 10))
 
+        
+        self.generate_button = tk.Button(root, text="Generate Data", command=self.generate_data)
+        self.generate_button.grid(row=3, column=0, columnspan=8, pady=(0, 10))
+
         self.data_text = tk.Text(root, height=20, width=50)
-        self.data_text.grid(row=3, column=0, columnspan=8, pady=0)
+        self.data_text.grid(row=4, column=0, columnspan=8, pady=0)
 
         self.mean_button = tk.Button(root, text="Mean", command=self.calculate_mean)
-        self.mean_button.grid(row=4, column=0, padx=45, pady=10)
+        self.mean_button.grid(row=5, column=0, padx=45, pady=10)
         self.mean_label = tk.Label(root, text="")
-        self.mean_label.grid(row=5, column=0)
+        self.mean_label.grid(row=6, column=0)
 
         self.median_button = tk.Button(root, text="Median", command=self.calculate_median)
-        self.median_button.grid(row=4, column=1, padx=45, pady=10)
+        self.median_button.grid(row=5, column=1, padx=45, pady=10)
         self.median_label = tk.Label(root, text="")
-        self.median_label.grid(row=5, column=1)
+        self.median_label.grid(row=6, column=1)
 
         self.mode_button = tk.Button(root, text="Mode", command=self.calculate_mode)
-        self.mode_button.grid(row=4, column=2, padx=45, pady=10)
+        self.mode_button.grid(row=5, column=2, padx=45, pady=10)
         self.mode_label = tk.Label(root, text="")
-        self.mode_label.grid(row=5, column=2)
+        self.mode_label.grid(row=6, column=2)
 
         self.maximum_button = tk.Button(root, text="Maximum", command=self.calculate_maximum)
-        self.maximum_button.grid(row=4, column=3, padx=45, pady=10)
+        self.maximum_button.grid(row=5, column=3, padx=45, pady=10)
         self.maximum_label = tk.Label(root, text="")
-        self.maximum_label.grid(row=5, column=3)
+        self.maximum_label.grid(row=6, column=3)
 
         self.minimum_button = tk.Button(root, text="Minimum", command=self.calculate_minimum)
-        self.minimum_button.grid(row=4, column=4, padx=45, pady=10)
+        self.minimum_button.grid(row=5, column=4, padx=45, pady=10)
         self.minimum_label = tk.Label(root, text="")
-        self.minimum_label.grid(row=5, column=4)
+        self.minimum_label.grid(row=6, column=4)
 
         self.mad_button = tk.Button(root, text="Mean Absolute Deviation", command=self.calculate_mad)
-        self.mad_button.grid(row=4, column=5, padx=45, pady=10)
+        self.mad_button.grid(row=5, column=5, padx=45, pady=10)
         self.mad_label = tk.Label(root, text="")
-        self.mad_label.grid(row=5, column=5)
+        self.mad_label.grid(row=6, column=5)
 
         self.sd_button = tk.Button(root, text="Standard Deviation", command=self.calculate_sd)
-        self.sd_button.grid(row=4, column=6, padx=45, pady=10)
+        self.sd_button.grid(row=5, column=6, padx=45, pady=10)
         self.sd_label = tk.Label(root, text="")
-        self.sd_label.grid(row=5, column=6)
+        self.sd_label.grid(row=6, column=6)
 
     def reset_labels(self):
         self.mean_label.config(text="")
