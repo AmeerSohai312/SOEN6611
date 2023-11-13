@@ -2,7 +2,7 @@ import csv
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
+import json
 
 
 
@@ -34,3 +34,46 @@ def upload_file(request):
 def show_csv_content(request):
     data = request.session.get('csv_data')
     return render(request, 'csv_content.html', {'data': data})
+
+
+def analysis_page(request):
+    return render(request, 'analysis_page.html')
+
+def function_use_case_1(data):
+    # Add your code for analyzing Use Case 1 here
+    # This function should return the results in a format you want to display
+    result = []
+    for row in data:
+        result_row = []
+        for value in row:
+            # Example mathematical operation (replace with your actual calculation)
+            result_row.append(float(value) * 2)
+        result.append(result_row)
+    return result
+
+def function_use_case_2(data):
+    # Add your code for analyzing Use Case 2 here
+    # This function should return the results in a format you want to display
+    result = []
+    for row in data:
+        result_row = []
+        for value in row:
+            # Example mathematical operation (replace with your actual calculation)
+            result_row.append(float(value) ** 2)
+        result.append(result_row)
+    return result
+
+
+def run_analysis(request):
+    use_case = request.GET.get('use_case')
+    data = request.session.get('csv_data', [])
+
+    if use_case == 'use_case_1':
+        results = function_use_case_1(data)
+    elif use_case == 'use_case_2':
+        results = function_use_case_2(data)
+    else:
+        results = "Invalid use case selected"
+
+    return HttpResponse(json.dumps(results), content_type='application/json')
+

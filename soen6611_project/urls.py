@@ -24,6 +24,8 @@ urlpatterns = [
     path('display/', views.display_csv, name='display_csv'),
     path('upload/', views.upload_file, name='upload_file'),
     path('show_csv_content/', views.show_csv_content, name='show_csv_content'),
+    path('analysis_page/', views.analysis_page, name='analysis_page'),
+    path('run_analysis/', views.run_analysis, name='run_analysis'),
 ]
 
 

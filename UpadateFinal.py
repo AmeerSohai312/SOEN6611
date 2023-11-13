@@ -141,94 +141,104 @@ class DataStatisticsGUI:
         self.data = None
 
         self.generate_button = tk.Button(root, text="Generate Data", command=self.generate_data)
-        self.generate_button.pack()
+        self.generate_button.grid(row=0, column=0, columnspan=8, pady=(0, 10))
 
-        self.data_text = tk.Text(root, height=20, width=160)
-        self.data_text.pack()
+        self.data_text = tk.Text(root, height=20, width=50)
+        self.data_text.grid(row=1, column=0, columnspan=8, pady=0)
 
         self.mean_button = tk.Button(root, text="Mean", command=self.calculate_mean)
-        self.mean_button.pack()
-        self.mean_label = tk.Label(root, text="Mean: ")
-        self.mean_label.pack()
+        self.mean_button.grid(row=2, column=0, padx=45, pady=10)
+        self.mean_label = tk.Label(root, text="")
+        self.mean_label.grid(row=3, column=0)
 
         self.median_button = tk.Button(root, text="Median", command=self.calculate_median)
-        self.median_button.pack()
-        self.median_label = tk.Label(root, text="Median: ")
-        self.median_label.pack()
+        self.median_button.grid(row=2, column=1, padx=45, pady=10)
+        self.median_label = tk.Label(root, text="")
+        self.median_label.grid(row=3, column=1)
 
         self.mode_button = tk.Button(root, text="Mode", command=self.calculate_mode)
-        self.mode_button.pack()
-        self.mode_label = tk.Label(root, text="Mode: ")
-        self.mode_label.pack()
+        self.mode_button.grid(row=2, column=2, padx=45, pady=10)
+        self.mode_label = tk.Label(root, text="")
+        self.mode_label.grid(row=3, column=2)
 
         self.maximum_button = tk.Button(root, text="Maximum", command=self.calculate_maximum)
-        self.maximum_button.pack()
-        self.maximum_label = tk.Label(root, text="Maximum: ")
-        self.maximum_label.pack()
+        self.maximum_button.grid(row=2, column=3, padx=45, pady=10)
+        self.maximum_label = tk.Label(root, text="")
+        self.maximum_label.grid(row=3, column=3)
 
         self.minimum_button = tk.Button(root, text="Minimum", command=self.calculate_minimum)
-        self.minimum_button.pack()
-        self.minimum_label = tk.Label(root, text="Minimum: ")
-        self.minimum_label.pack()
+        self.minimum_button.grid(row=2, column=4, padx=45, pady=10)
+        self.minimum_label = tk.Label(root, text="")
+        self.minimum_label.grid(row=3, column=4)
 
         self.mad_button = tk.Button(root, text="Mean Absolute Deviation", command=self.calculate_mad)
-        self.mad_button.pack()
-        self.mad_label = tk.Label(root, text="Mean Absolute Deviation: ")
-        self.mad_label.pack()
+        self.mad_button.grid(row=2, column=5, padx=45, pady=10)
+        self.mad_label = tk.Label(root, text="")
+        self.mad_label.grid(row=3, column=5)
 
         self.sd_button = tk.Button(root, text="Standard Deviation", command=self.calculate_sd)
-        self.sd_button.pack()
-        self.sd_label = tk.Label(root, text="Standard Deviation: ")
-        self.sd_label.pack()
+        self.sd_button.grid(row=2, column=6, padx=45, pady=10)
+        self.sd_label = tk.Label(root, text="")
+        self.sd_label.grid(row=3, column=6)
+
+    def reset_labels(self):
+        self.mean_label.config(text="")
+        self.median_label.config(text="")
+        self.mode_label.config(text="")
+        self.maximum_label.config(text="")
+        self.minimum_label.config(text="")
+        self.mad_label.config(text="")
+        self.sd_label.config(text="")
 
     def generate_data(self):
         n = 1000
-        r = 1000
+        r = 5000
         self.data = [random.randrange(0, r) for _ in range(n)]
         self.data_text.delete(1.0, tk.END)  # Clear previous data
         self.data_text.insert(tk.END, str(self.data))
+        self.reset_labels()  # Reset all labels
 
     def calculate_mean(self):
         if self.data:
             statistics_calculator = DataStatistics(self.data)
-            mean_value = statistics_calculator.calculate_mean()
-            self.mean_label.config(text=f"Mean: {mean_value}")
+            mean_value = round(statistics_calculator.calculate_mean(), 2)
+            self.mean_label.config(text=f" {mean_value}")
 
     def calculate_median(self):
         if self.data:
             statistics_calculator = DataStatistics(self.data)
-            median_value = statistics_calculator.find_median()
-            self.median_label.config(text=f"Median: {median_value}")
+            median_value = round(statistics_calculator.find_median(), 2)
+            self.median_label.config(text=f"{median_value}")
 
     def calculate_mode(self):
         if self.data:
             statistics_calculator = DataStatistics(self.data)
             mode_value = statistics_calculator.find_modes()
-            self.mode_label.config(text=f"Mode: {mode_value}")
+            self.mode_label.config(text=f"{mode_value}")
 
     def calculate_maximum(self):
         if self.data:
             statistics_calculator = DataStatistics(self.data)
-            maximum_value = statistics_calculator.find_max()
-            self.maximum_label.config(text=f"Maximum: {maximum_value}")
+            maximum_value = round(statistics_calculator.find_max(), 2)
+            self.maximum_label.config(text=f"{maximum_value}")
 
     def calculate_minimum(self):
         if self.data:
             statistics_calculator = DataStatistics(self.data)
-            minimum_value = statistics_calculator.find_min()
-            self.minimum_label.config(text=f"Minimum: {minimum_value}")
+            minimum_value = round(statistics_calculator.find_min(), 2)
+            self.minimum_label.config(text=f"{minimum_value}")
 
     def calculate_mad(self):
         if self.data:
             statistics_calculator = DataStatistics(self.data)
-            mad_value = statistics_calculator.mad()
-            self.mad_label.config(text=f"Mean Absolute Deviation: {mad_value}")
+            mad_value = round(statistics_calculator.mad(), 2)
+            self.mad_label.config(text=f"{mad_value}")
 
     def calculate_sd(self):
         if self.data:
             statistics_calculator = DataStatistics(self.data)
-            sd_value = statistics_calculator.sd()
-            self.sd_label.config(text=f"Standard Deviation: {sd_value}")
+            sd_value = round(statistics_calculator.sd(), 2)
+            self.sd_label.config(text=f"{sd_value}")
 
 if __name__ == '__main__':
     root = tk.Tk()

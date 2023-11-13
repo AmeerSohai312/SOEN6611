@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analysis Page</title>
+</head>
+<body>
+    <h2>Select Use Case</h2>
+    <form id="useCaseForm">
+        <select id="useCaseSelect">
+            <option value="use_case_1">Use Case 1</option>
+            <option value="use_case_2">Use Case 2</option>
+            <!-- Add more options as needed -->
+        </select>
+        <input type="submit" value="Run Analysis">
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('useCaseForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var selectedUseCase = document.getElementById('useCaseSelect').value;
+            var url = "{% url 'run_analysis' %}?use_case=" + selectedUseCase;
+
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'X-CSRFToken': document.getElementsByName('csrfmiddlewaretoken')[0].value
+                }
+            })
+            .then(response => response.json())  // Assuming results are returned as JSON
+            .then(data => {
+                var resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = ''; // Clear previous results
+
+                if (Array.isArray(data) && data.length > 0 && Array.isArray(data[0])) {
+                    var table = document.createElement('table');
+                    data.forEach(function(rowData) {
+                        var row = document.createElement('tr');
+                        rowData.forEach(function(cellData) {
+                            var cell = document.createElement('td');
+                            cell.appendChild(document.createTextNode(cellData));
+                            row.appendChild(cell);
+                        });
+                        table.appendChild(row);
+                    });
+                    resultDiv.appendChild(table);
+                } else {
+                    resultDiv.textContent = data;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
