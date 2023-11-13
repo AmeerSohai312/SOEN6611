@@ -1,8 +1,8 @@
 import tkinter as tk
 import statistics
 import random
-from tkinter import Entry
 from tkinter import Entry, Label
+from tkinter import messagebox
 
 class DataStatistics:
     def __init__(self, data):
@@ -143,60 +143,75 @@ class DataStatisticsGUI:
         self.data = None
 
 
-        # Labels for n and r
-        self.n_label = Label(root, text="Enter number:")
-        self.n_label.grid(row=0, column=0, padx=5)
-        self.r_label = Label(root, text="Enter range:")
-        self.r_label.grid(row=1, column=0, padx=5)
+        # # Labels for n and r
+        # self.n_label = Label(root, text="Please enter the total number you want to generate:")
+        # self.n_label.grid(row=0, column=0, padx=5)
+        # self.r_label = Label(root, text="Please enter the maximum range of the number you want to generate:")
+        # self.r_label.grid(row=1, column=0, padx=5)
 
-        # Entry widgets for n and r
-        self.n_entry = Entry(root)
-        self.n_entry.insert(0, "1000")
-        self.n_entry.grid(row=0, column=1, padx=5)
-        self.r_entry = Entry(root)
-        self.r_entry.insert(0, "5000")
-        self.r_entry.grid(row=1, column=1, padx=5)
+        # # Entry widgets for n and r
+        # self.n_entry = Entry(root)
+        # self.n_entry.insert(0, "1000")
+        # self.n_entry.grid(row=0, column=1, padx=5)
+        # self.r_entry = Entry(root)
+        # self.r_entry.insert(0, "1000")
+        # self.r_entry.grid(row=1, column=1, padx=5)
+
 
         self.generate_button = tk.Button(root, text="Generate Data", command=self.generate_data)
         self.generate_button.grid(row=0, column=0, columnspan=8, pady=(0, 10))
 
+        # Labels for n and r
+        self.n_label = Label(root, text="Please enter the total number you want to generate:")
+        self.n_label.grid(row=1, column=0, padx=5, columnspan=8, pady=(0, 10))
+        self.r_label = Label(root, text="Please enter the maximum range of the number you want to generate:")
+        self.r_label.grid(row=2, column=0, padx=5, columnspan=8, pady=(0, 10))
+
+         # Entry widgets for n and r
+        self.n_entry = Entry(root)
+        self.n_entry.insert(0, "1000")
+        self.n_entry.grid(row=1, column=4, padx=5, columnspan=8, pady=(0, 10))
+        self.r_entry = Entry(root)
+        self.r_entry.insert(0, "1000")
+        self.r_entry.grid(row=2, column=4, padx=5, columnspan=8, pady=(0, 10))
+
         self.data_text = tk.Text(root, height=20, width=50)
-        self.data_text.grid(row=1, column=0, columnspan=8, pady=0)
+        self.data_text.grid(row=3, column=0, columnspan=8, pady=0)
 
         self.mean_button = tk.Button(root, text="Mean", command=self.calculate_mean)
-        self.mean_button.grid(row=2, column=0, padx=45, pady=10)
+        self.mean_button.grid(row=4, column=0, padx=45, pady=10)
         self.mean_label = tk.Label(root, text="")
-        self.mean_label.grid(row=3, column=0)
+        self.mean_label.grid(row=5, column=0)
 
         self.median_button = tk.Button(root, text="Median", command=self.calculate_median)
-        self.median_button.grid(row=2, column=1, padx=45, pady=10)
+        self.median_button.grid(row=4, column=1, padx=45, pady=10)
         self.median_label = tk.Label(root, text="")
-        self.median_label.grid(row=3, column=1)
+        self.median_label.grid(row=5, column=1)
 
         self.mode_button = tk.Button(root, text="Mode", command=self.calculate_mode)
-        self.mode_button.grid(row=2, column=2, padx=45, pady=10)
+        self.mode_button.grid(row=4, column=2, padx=45, pady=10)
         self.mode_label = tk.Label(root, text="")
-        self.mode_label.grid(row=3, column=2)
+        self.mode_label.grid(row=5, column=2)
 
         self.maximum_button = tk.Button(root, text="Maximum", command=self.calculate_maximum)
-        self.maximum_button.grid(row=2, column=3, padx=45, pady=10)
+        self.maximum_button.grid(row=4, column=3, padx=45, pady=10)
         self.maximum_label = tk.Label(root, text="")
-        self.maximum_label.grid(row=3, column=3)
+        self.maximum_label.grid(row=5, column=3)
 
         self.minimum_button = tk.Button(root, text="Minimum", command=self.calculate_minimum)
-        self.minimum_button.grid(row=2, column=4, padx=45, pady=10)
+        self.minimum_button.grid(row=4, column=4, padx=45, pady=10)
         self.minimum_label = tk.Label(root, text="")
-        self.minimum_label.grid(row=3, column=4)
+        self.minimum_label.grid(row=5, column=4)
 
         self.mad_button = tk.Button(root, text="Mean Absolute Deviation", command=self.calculate_mad)
-        self.mad_button.grid(row=2, column=5, padx=45, pady=10)
+        self.mad_button.grid(row=4, column=5, padx=45, pady=10)
         self.mad_label = tk.Label(root, text="")
-        self.mad_label.grid(row=3, column=5)
+        self.mad_label.grid(row=5, column=5)
 
         self.sd_button = tk.Button(root, text="Standard Deviation", command=self.calculate_sd)
-        self.sd_button.grid(row=2, column=6, padx=45, pady=10)
+        self.sd_button.grid(row=4, column=6, padx=45, pady=10)
         self.sd_label = tk.Label(root, text="")
-        self.sd_label.grid(row=3, column=6)
+        self.sd_label.grid(row=5, column=6)
 
     def reset_labels(self):
         self.mean_label.config(text="")
@@ -208,14 +223,21 @@ class DataStatisticsGUI:
         self.sd_label.config(text="")
 
     def generate_data(self):
-        # Get n and r from Entry widgets
-        n = int(self.n_entry.get())
-        r = int(self.r_entry.get())
+        try:
+            # Get n and r from Entry widgets
+            n = int(self.n_entry.get())
+            r = int(self.r_entry.get())
+            if r < n:
+                raise ValueError("Maximum range must be greater than or equal to the total number")
 
-        self.data = [random.randrange(0, r) for _ in range(n)]
-        self.data_text.delete(1.0, tk.END)  # Clear previous data
-        self.data_text.insert(tk.END, str(self.data))
-        self.reset_labels()  # Reset all labels
+
+            self.data = [random.randrange(0, r) for _ in range(n)]
+            self.data_text.delete(1.0, tk.END)  # Clear previous data
+            self.data_text.insert(tk.END, str(self.data))
+            self.reset_labels()  # Reset all labels
+        except ValueError as e:
+            # Display an error message if there's an issue with the input values
+            tk.messagebox.showerror("Input Error", str(e))
 
     def calculate_mean(self):
         if self.data:
