@@ -1,6 +1,8 @@
 import tkinter as tk
 import statistics
 import random
+from tkinter import Entry
+from tkinter import Entry, Label
 
 class DataStatistics:
     def __init__(self, data):
@@ -140,6 +142,21 @@ class DataStatisticsGUI:
         self.root.title("Statistics Calculator")
         self.data = None
 
+
+        # Labels for n and r
+        self.n_label = Label(root, text="Enter number:")
+        self.n_label.grid(row=0, column=0, padx=5)
+        self.r_label = Label(root, text="Enter range:")
+        self.r_label.grid(row=1, column=0, padx=5)
+
+        # Entry widgets for n and r
+        self.n_entry = Entry(root)
+        self.n_entry.insert(0, "1000")
+        self.n_entry.grid(row=0, column=1, padx=5)
+        self.r_entry = Entry(root)
+        self.r_entry.insert(0, "5000")
+        self.r_entry.grid(row=1, column=1, padx=5)
+
         self.generate_button = tk.Button(root, text="Generate Data", command=self.generate_data)
         self.generate_button.grid(row=0, column=0, columnspan=8, pady=(0, 10))
 
@@ -191,8 +208,10 @@ class DataStatisticsGUI:
         self.sd_label.config(text="")
 
     def generate_data(self):
-        n = 1000
-        r = 5000
+        # Get n and r from Entry widgets
+        n = int(self.n_entry.get())
+        r = int(self.r_entry.get())
+
         self.data = [random.randrange(0, r) for _ in range(n)]
         self.data_text.delete(1.0, tk.END)  # Clear previous data
         self.data_text.insert(tk.END, str(self.data))
