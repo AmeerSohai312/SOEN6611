@@ -143,7 +143,7 @@ class DataStatisticsGUI:
         self.data = None
 
         # Add project name label
-        project_name_label = tk.Label(root, text="MATERISTIXZ", font=("Helvetica", 16, "bold"), pady=10)
+        project_name_label = tk.Label(root, text="METRICSTICS", font=("Helvetica", 16, "bold"), pady=10)
         project_name_label.grid(row=0, column=0, columnspan=8)
 
         # Labels for n and r
@@ -229,46 +229,81 @@ class DataStatisticsGUI:
             tk.messagebox.showerror("Input Error", str(e))
 
     def calculate_mean(self):
-        if self.data:
-            statistics_calculator = DataStatistics(self.data)
-            mean_value = round(statistics_calculator.calculate_mean(), 2)
-            self.mean_label.config(text=f" {mean_value}")
+        try:
+            if self.data:
+                statistics_calculator = DataStatistics(self.data)
+                mean_value = round(statistics_calculator.calculate_mean(), 2)
+                self.mean_label.config(text=f" {mean_value}")
+            else:
+                raise ValueError("No data available. Please generate data first.")
+        except ValueError as e:
+            tk.messagebox.showerror("Calculation Error", str(e))
 
     def calculate_median(self):
-        if self.data:
-            statistics_calculator = DataStatistics(self.data)
-            median_value = round(statistics_calculator.find_median(), 2)
-            self.median_label.config(text=f"{median_value}")
+        try:
+            if self.data:
+                statistics_calculator = DataStatistics(self.data)
+                median_value = round(statistics_calculator.find_median(), 2)
+                self.median_label.config(text=f"{median_value}")
+            else:
+                raise ValueError("No data available. Please generate data first.")
+        except ValueError as e:
+            tk.messagebox.showerror("Calculation Error", str(e))
 
     def calculate_mode(self):
-        if self.data:
-            statistics_calculator = DataStatistics(self.data)
-            mode_value = statistics_calculator.find_modes()
-            self.mode_label.config(text=f"{mode_value}")
+        try:
+            if self.data:
+                statistics_calculator = DataStatistics(self.data)
+                mode_value = statistics_calculator.find_modes()
+                self.mode_label.config(text=f"{mode_value}")
+            else:
+                raise ValueError("No data available. Please generate data first.")
+        except ValueError as e:
+            tk.messagebox.showerror("Calculation Error", str(e))
 
     def calculate_maximum(self):
-        if self.data:
-            statistics_calculator = DataStatistics(self.data)
-            maximum_value = round(statistics_calculator.find_max(), 2)
-            self.maximum_label.config(text=f"{maximum_value}")
+        try:
+            if self.data:
+                statistics_calculator = DataStatistics(self.data)
+                maximum_value = round(statistics_calculator.find_max(), 2)
+                self.maximum_label.config(text=f"{maximum_value}")
+            else:
+                raise ValueError("No data available. Please generate data first.")
+        except ValueError as e:
+            tk.messagebox.showerror("Calculation Error", str(e))
 
     def calculate_minimum(self):
-        if self.data:
-            statistics_calculator = DataStatistics(self.data)
-            minimum_value = round(statistics_calculator.find_min(), 2)
-            self.minimum_label.config(text=f"{minimum_value}")
+        try:
+            if self.data:
+                statistics_calculator = DataStatistics(self.data)
+                minimum_value = round(statistics_calculator.find_min(), 2)
+                self.minimum_label.config(text=f"{minimum_value}")
+            else:
+                raise ValueError("No data available. Please generate data first.")
+        except ValueError as e:
+            tk.messagebox.showerror("Calculation Error", str(e))
 
     def calculate_mad(self):
-        if self.data:
-            statistics_calculator = DataStatistics(self.data)
-            mad_value = round(statistics_calculator.mad(), 2)
-            self.mad_label.config(text=f"{mad_value}")
+        try:
+            if self.data:
+                statistics_calculator = DataStatistics(self.data)
+                mad_value = round(statistics_calculator.mad(), 2)
+                self.mad_label.config(text=f"{mad_value}")
+            else:
+                raise ValueError("No data available. Please generate data first.")
+        except ValueError as e:
+            tk.messagebox.showerror("Calculation Error", str(e))
 
     def calculate_sd(self):
-        if self.data:
-            statistics_calculator = DataStatistics(self.data)
-            sd_value = round(statistics_calculator.sd(), 2)
-            self.sd_label.config(text=f"{sd_value}")
+        try:
+            if self.data:
+                statistics_calculator = DataStatistics(self.data)
+                sd_value = round(statistics_calculator.sd(), 2)
+                self.sd_label.config(text=f"{sd_value}")
+            else:
+                raise ValueError("No data available. Please generate data first.")
+        except ValueError as e:
+            tk.messagebox.showerror("Calculation Error", str(e))
 
 if __name__ == '__main__':
     root = tk.Tk()
