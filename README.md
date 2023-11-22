@@ -9,7 +9,7 @@ values and output its descriptive statistics.
 
 | Student Name  | Task Allocated |
 | -------- | -------- |
-| A K M Saifun Nabi    | 1. Formulation of SMART Goal and GQM Questions.<br>2. Conducted Team Meetings. <br>3. Manage Overall Project. <br>4. UCP Model & Cocomo 81 Model Calculation. <br>5. Latex Documentation|
+| A K M Saifun Nabi    | 1. Formulation of SMART Goal and GQM Questions. <br>2. Manage Overall Project. <br>3. UCP Model & Cocomo 81 Model Calculation. <br>4. Latex Documentation|
 | Niousha Mahjoub    |1. Defined Use Case and Use Case Scenarios.<br>2. LaTeX Documentation. <br>3. Development of minimum,maximum function. <br>4. Analyzing Physical and Logical SLOC |
 | Palacy Mehta     |1. Defined Use Case and Use Case Scenarios.<br>2. Conducted Team Meetings. <br>3. Development of Mode and Median. <br>4. Cyclomatic Number Calculation|
 |Ameer Mohammed |1. Defined Use Case and Use Case Scenarios.<br>2. LaTeX Documentation. <br>3. Development of the Materistics application and front-end implementation. <br> 4. Testing the Code Base |
